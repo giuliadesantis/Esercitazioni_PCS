@@ -1,8 +1,6 @@
 #include <iostream>
 #include "complex.hpp"
 
-// da modificare... che output devi mettere?
-
 int main() {
 	complex_number<double> c0; //costruttore di default
 	std::cout << "c0: " << c0 << std::endl;
