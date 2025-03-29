@@ -1,33 +1,22 @@
-﻿**Linear System**
+﻿Esercitazione sull’overload degli operatori
 
-Solving linear system plays a key role in many scientific application, such as engineering, physics, chemistry, computer science, and economics.
+March 17, 2025
 
-**Example**
+Questa esercitazione `e obbligatoria e dev’essere consegnata al massimo alla data di consegna prevista per l’esercitazione sull’input output. √ ![](Aspose.Words.4f360d99-6166-407f-a19c-6bedf7a11ad0.001.png)
 
-The solution of the linear system Ax = bcan be retrieved as
+Un numero complesso `e un numero della forma z = a+ ib, dove i = −1 `e l’unit`a immaginaria. I due numeri reali a e b sono detti rispettivamente parte reale e parte immaginaria.
 
-Ly = Pb
+Si definisca una classe template complex~~ number che modella i numeri complessi. La classe template prende come parametro il tipo Tcon il quale si rappresentano a e bsulla macchina. La classe deve funzionare correttamente per T = float e T = double.
 
-Ux = y
+Tale classe template deve:
 
-by exploiting the PALU decomposition of Aor throughout its QR decomposition as
+- Avere un costruttore di default
+- Avere un costruttore user-defined per l’inizializzazione di parte reale ed immaginaria
+- Avere metodi che restituiscano il coniugato, la parte reale e la parte immaginaria
+- Fornire un overload dell’operatore << per stampare il numero comp- lesso. Se per esempio a = 1 e b= 2, dev’essere stampato 1+2i, mentre se b= −2 dev’essere stampato 1-2i.
+- Fornire un overload degli operatori += e +.
+- Fornire un overload degli operatori \*= e \*.
+- Opzionale: in modo simile a quanto fatto in classe nel caso di rational , utilizzare i concept per vincolare T ad essere un tipo floating poing. Verificare su [https://en.cppreference.com/w/cpp/header/concepts ](https://en.cppreference.com/w/cpp/header/concepts)qual’`e il concept da utilizzare a tal scopo.
 
-y = Q' b R x = y
-
-**Requirements**
-
-Write a software able to compute the linear system solution with PALU and QR decomposition of the following systems:
-
-1. A = [5.547001962252291e-01, -3.770900990025203e-02; 8.320502943378437e-01, -9.992887623566787e-01]
-
-   b = [-5.169911863249772e-01; 1.672384680188350e-01]
-
-2. A = [5.547001962252291e-01, -5.540607316466765e-01; 8.320502943378437e-01, -8.324762492991313e-01]
-
-   b = [-6.394645785530173e-04; 4.259549612877223e-04]
-
-3. A = [5.547001962252291e-01, -5.547001955851905e-01; 8.320502943378437e-01, -8.320502947645361e-01]
-
-b = [-6.400391328043042e-10; 4.266924591433963e-10] All the three system shall have solution x = [-1.0e+0; -1.0e+00] Check for each system the relative error.
-
-1
+Similmente a quanto fatto su rational, gli operatori + e \* implemen- tati devono soddisfare correttamente i requisiti di commutativit`a quando l’operazione svolta `e tra un complex~~ numer<T> ed un T.
+2
