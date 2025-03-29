@@ -5,7 +5,7 @@
 #include <fstream>
 
 
-double map_values(double x){
+double map_values(double& x){
 	int a = 1;
 	int b = 5;
 	int c = -1;
@@ -44,6 +44,5 @@ int main()
 	}
 	file.close();
 	ofs.close();
-	
     	return 0;
 }
