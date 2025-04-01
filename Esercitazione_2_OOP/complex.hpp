@@ -53,11 +53,11 @@ public:
 
 	// overload operatore di moltiplicazione *=
     complex_number& operator*=(const complex_number& other) {
-        T newReal = real * other.real - imag * other.imag;
+		T newReal = real * other.real - imag * other.imag;
         T newImag = real * other.imag + imag * other.real;
         real = newReal;
         imag = newImag;
-        return *this; 
+		return *this; 
     }
 
 	// overload operatore di moltiplicazione *
