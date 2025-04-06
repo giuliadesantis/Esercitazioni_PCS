@@ -23,7 +23,7 @@ VectorXd sol_QR(const MatrixXd& A, const VectorXd& b){
 int main()
 {
 	Vector2d x_es(-1.0e+00, -1.0e+00);
-	double epsilon = 10e-16;
+	double epsilon = 10e-15;
 	
 	cout << "Sistema 1" << endl;
 	
