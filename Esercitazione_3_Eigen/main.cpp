@@ -5,7 +5,7 @@
 using namespace std;
 using namespace Eigen;
 
-double err_rel(const Vector2d& x_err, const Vector2d& x_es) {
+double err_rel(const Vector2d& x_es, const Vector2d& x_err) {
 	return (x_err - x_es).norm() / x_es.norm();
 }
 
