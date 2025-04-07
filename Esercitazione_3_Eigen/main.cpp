@@ -37,13 +37,13 @@ int main()
 	if (abs(A1.determinant()) < epsilon) {
         cout << "La matrice è singolare (determinante ≈ 0)." <<endl;
     } else {
-		cout << "soluzione PALU:\n" << scientific << setprecision(16) << sol_PALU(A1,b1) << endl;
+		cout << "soluzione PALU:\n" << scientific << setprecision(15) << sol_PALU(A1,b1) << endl;
 		err_PALU = err_rel(x_es,sol_PALU(A1,b1));
-		cout << "errore relativo PALU: " << scientific << setprecision(16)<< err_PALU << endl;
+		cout << "errore relativo PALU: " << scientific << setprecision(15)<< err_PALU << endl;
 		
-		cout << "soluzione QR: \n" << scientific << setprecision(16)<< sol_QR(A1,b1) << endl;
+		cout << "soluzione QR: \n" << scientific << setprecision(15)<< sol_QR(A1,b1) << endl;
 		err_QR = err_rel(x_es,sol_QR(A1,b1));
-		cout << "errore relativo QR: "<< scientific << setprecision(16) << err_QR << endl;	
+		cout << "errore relativo QR: "<< scientific << setprecision(15) << err_QR << endl;	
 	}
 	
 	cout << "Sistema 2" << endl;
@@ -57,13 +57,13 @@ int main()
 	if (abs(A2.determinant()) < epsilon) {
         cout << "La matrice è singolare (determinante ≈ 0)." <<endl;
     } else {
-		cout << "soluzione PALU: \n" << scientific << setprecision(16)<< sol_PALU(A2,b2) << endl;
+		cout << "soluzione PALU: \n" << scientific << setprecision(15)<< sol_PALU(A2,b2) << endl;
 		err_PALU = err_rel(x_es,sol_PALU(A2,b2));
-		cout << "errore relativo PALU: " << scientific << setprecision(16)<< err_PALU << endl;
+		cout << "errore relativo PALU: " << scientific << setprecision(15)<< err_PALU << endl;
 		
-		cout << "soluzione QR: \n" << scientific << setprecision(16)<< sol_QR(A2,b2) << endl;
+		cout << "soluzione QR: \n" << scientific << setprecision(15)<< sol_QR(A2,b2) << endl;
 		err_QR = err_rel(x_es,sol_QR(A2,b2));
-		cout << "errore relativo QR: " << scientific << setprecision(16)<< err_QR << endl;
+		cout << "errore relativo QR: " << scientific << setprecision(15)<< err_QR << endl;
 	}	
 	
 	cout << "Sistema 3" << endl;
@@ -77,13 +77,13 @@ int main()
 	if (abs(A3.determinant()) < epsilon) {
         cout << "La matrice è singolare (determinante ≈ 0)." <<endl;
     } else {
-		cout << "soluzione PALU: \n" << scientific << setprecision(16)<< sol_PALU(A3,b3) << endl;
+		cout << "soluzione PALU: \n" << scientific << setprecision(15)<< sol_PALU(A3,b3) << endl;
 		err_PALU = err_rel(x_es,sol_PALU(A3,b3));
-		cout << "errore relativo PALU: " << scientific << setprecision(16)<< err_PALU << endl;
+		cout << "errore relativo PALU: " << scientific << setprecision(15)<< err_PALU << endl;
 		
-		cout << "soluzione QR:\n" << scientific << setprecision(16)<< sol_QR(A3,b3) << endl;
+		cout << "soluzione QR:\n" << scientific << setprecision(15)<< sol_QR(A3,b3) << endl;
 		err_QR = err_rel(x_es,sol_QR(A3,b3));
-		cout << "errore relativo QR: " << scientific << setprecision(16)<< err_QR << endl;
+		cout << "errore relativo QR: " << scientific << setprecision(15)<< err_QR << endl;
 	}
 		
 	
