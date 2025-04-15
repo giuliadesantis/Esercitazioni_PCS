@@ -15,7 +15,11 @@ bool ImportVectors(const string& inputFilePath,
                    double& S,
                    size_t& n,
                    double*& w,
-                   double*& r);
+                   double*& r,
+				   string& nome1,
+				   string& nome2,
+				   string& nome3, 
+				   string& nome4);
 				   
 /*
 	RateOfReturn calcola il tasso di rendimento a partire dai dati forniti
@@ -44,6 +48,10 @@ bool ExportResult(const string& outputFilePath,
                   const size_t& n,
                   const double* const& w,
                   const double* const& r,
-                  const double& rateOfReturn);	
+                  const double& rateOfReturn,
+				  const string& nome1,
+				  const string& nome2,
+				  const string& nome3, 
+				  const string& nome4);	
 						
 						

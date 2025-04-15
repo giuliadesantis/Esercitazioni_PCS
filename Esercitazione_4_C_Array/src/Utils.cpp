@@ -13,7 +13,11 @@ bool ImportVectors(const string& inputFilePath,
                    double& S,
                    size_t& n,
                    double*& w,
-                   double*& r) 
+                   double*& r,
+				   string& nome1,
+				   string& nome2,
+				   string& nome3, 
+				   string& nome4)
 {
     ifstream file; //Apro il file
     file.open(inputFilePath);
@@ -28,7 +32,7 @@ bool ImportVectors(const string& inputFilePath,
 	string line;
 	getline(file, line);//leggo la prima riga del file
 	stringstream ss1(line);
-	string nome1;
+	//string nome1;
 	
 	getline(ss1, nome1, ';'); // legge fino a ';'
 	ss1 >> S;
@@ -36,13 +40,13 @@ bool ImportVectors(const string& inputFilePath,
 	// Leggo il numero di elementi
 	getline(file, line);//leggo la seconda riga del file
 	stringstream ss2(line);
-	string nome2;
+	//string nome2;
 	getline(ss2, nome2, ';'); //il primo carattere della stringa viene assegnato a nome
 	ss2 >> n;
 	
 	// Leggo il nome dei vettori dal file
-	string nome3;
-	string nome4;
+	//string nome3;
+	//string nome4;
 	getline(file, line);
 	stringstream ss3(line);
 	getline(ss3, nome3, ';'); //il primo carattere della stringa viene assegnato a nome
@@ -83,7 +87,11 @@ bool ExportResult(const string& outputFilePath,
                   const size_t& n,
                   const double* const& w,
                   const double* const& r,
-                  const double& rateOfReturn)
+                  const double& rateOfReturn,
+				  const string& nome1,
+				  const string& nome2,
+				  const string& nome3, 
+				  const string& nome4)
 {
     // apro file output
     ofstream file;
@@ -95,14 +103,14 @@ bool ExportResult(const string& outputFilePath,
         return false;
     }
 
-    file << fixed << setprecision(2) << "S = "<< S << ", n = " << n << endl; 
+    file << fixed << setprecision(2) << nome1 << " = "<< S << ", " << nome2 << " = " << n << endl; 
 
-    file<< "w = [" << " ";
+    file<< nome3 << " = [" << " ";
     for (unsigned int i = 0; i < n; i++)
         file << (i != 0 ? " " : "") << w[i] << " ";
     file << "] " << endl;
 
-    file<< "r = ["<< " ";
+    file<< nome4 << " = ["<< " ";
     for (unsigned int i = 0; i < n; i++)
         file<< (i != 0 ? " " : "")<< r[i] << " ";
     file << "]"<< endl;
