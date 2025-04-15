@@ -53,7 +53,6 @@ bool ImportVectors(const string& inputFilePath,
 	w = new double[n];
 	r = new double[n];
 	
-
 	for (size_t k = 0; k < n && getline(file, line); ++k) {
     stringstream ssi(line);
     ssi >> w[k];
@@ -61,11 +60,11 @@ bool ImportVectors(const string& inputFilePath,
     ssi >> r[k];
 	}
 	
+	
 	file.close();
 
     return true;
 }
-
 
 double RateOfReturn(const size_t& n,
                     const double* const& w,

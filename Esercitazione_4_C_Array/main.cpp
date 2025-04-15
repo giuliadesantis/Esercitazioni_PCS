@@ -16,24 +16,23 @@ int main()
 	
 	if (!ImportVectors(inputFileName, S, n, w, r))
     {
-        cerr<< "Something goes wrong with import"<< endl;
+        cerr<< "Errore nell'importazione dei dati da file"<< endl;
         return -1;
     }
     else{
-	cout<< "Import successful" << endl;
+	cout<< "Dati importati correttamente" << endl;
 	}
 
     double rateOfReturn = RateOfReturn(n, w, r);
-	
-	
+		
 	string outputFileName = "result.txt";
     if (!ExportResult(outputFileName, S, n, w, r, rateOfReturn))
     {
-        cerr<< "Something goes wrong with export"<< endl;
+        cerr<< "Errore nell'esportazione dei dati da file"<< endl;
         return -1;
     }
     else{
-        cout<< "Export successful"<< endl;
+        cout<< "Dati esportati correttamente"<< endl;
 	}
 	
 	
