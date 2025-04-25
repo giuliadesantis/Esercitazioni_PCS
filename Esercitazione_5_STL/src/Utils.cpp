@@ -74,7 +74,7 @@ bool ImportMesh(PolygonalMesh& mesh)
 
 bool ImportCell0Ds(PolygonalMesh& mesh)//importo i punti della mesh
 {
-    ifstream file;
+	ifstream file;
 	file.open("./Cell0Ds.csv");
 
 	if(file.fail())
@@ -105,13 +105,13 @@ bool ImportCell0Ds(PolygonalMesh& mesh)//importo i punti della mesh
 		istringstream converter(line); //istringstream legge l'id e il marker, poi coordinata x e y
 
 		unsigned int id;//inizializzo la variabile per l'id
-        unsigned int marker;//inizializzo la variabile per il marker
+		unsigned int marker;//inizializzo la variabile per il marker
 		char tmp;//per il carattere ";"
 		
-        converter >>  id >> tmp >> marker >> tmp >> mesh.Cell0DsCoordinates(0, id) >> tmp >> mesh.Cell0DsCoordinates(1, id);
-        mesh.Cell0DsId.push_back(id);
+		converter >>  id >> tmp >> marker >> tmp >> mesh.Cell0DsCoordinates(0, id) >> tmp >> mesh.Cell0DsCoordinates(1, id);
+		mesh.Cell0DsId.push_back(id);
 
-        /// Memorizza i marker
+		/// Memorizza i marker
 		//ogni marker è la chiave, a cui viene collegato il valore dei punti associati a quello 
 		//per i punti, i marker vanno da 1 a 8
 		
@@ -134,43 +134,43 @@ bool ImportCell0Ds(PolygonalMesh& mesh)//importo i punti della mesh
 // ***************************************************************************
 bool ImportCell1Ds(PolygonalMesh& mesh)
 {
-    ifstream file;
+	ifstream file;
 	file.open("./Cell1Ds.csv");
 
-    if(file.fail())
-        return false;
+	if(file.fail())
+		return false;
 
-    list<string> listLines;
-    string line;
-    while (getline(file, line))
-        listLines.push_back(line);
+    	list<string> listLines;
+	string line;
+   	while (getline(file, line))
+        	listLines.push_back(line);
 
-    file.close();
+    	file.close();
 
-    listLines.pop_front();// rimuovo header
+    	listLines.pop_front();// rimuovo header
 
-    mesh.NumCell1Ds = listLines.size();
+    	mesh.NumCell1Ds = listLines.size();
 
-    if (mesh.NumCell1Ds == 0)
-    {
-        cerr << "Non sono presenti Cell1D nel file" << endl;
-        return false;
-    }
+    	if (mesh.NumCell1Ds == 0)
+    	{
+        	cerr << "Non sono presenti Cell1D nel file" << endl;
+        	return false;
+    	}
 
-    mesh.Cell1DsId.reserve(mesh.NumCell1Ds);
-    mesh.Cell1DsExtrema = Eigen::MatrixXi(2, mesh.NumCell1Ds);//per memorizzare i due estremi per ogni lato
+    	mesh.Cell1DsId.reserve(mesh.NumCell1Ds);
+    	mesh.Cell1DsExtrema = Eigen::MatrixXi(2, mesh.NumCell1Ds);//per memorizzare i due estremi per ogni lato
 	
 	unsigned int k1 = 0; // contatore lati di lunghezza nulla
-    for (const string& line : listLines)
-    {
-        istringstream converter(line);
+    	for (const string& line : listLines)
+    	{
+        	istringstream converter(line);
 
-        unsigned int id;
-        unsigned int marker;
+        	unsigned int id;
+        	unsigned int marker;
 		char tmp;
 
-        converter >>  id >> tmp >> marker >> tmp >> mesh.Cell1DsExtrema(0, id) >> tmp >> mesh.Cell1DsExtrema(1, id);
-        mesh.Cell1DsId.push_back(id);
+        	converter >>  id >> tmp >> marker >> tmp >> mesh.Cell1DsExtrema(0, id) >> tmp >> mesh.Cell1DsExtrema(1, id);
+        	mesh.Cell1DsId.push_back(id);
 	
 		/// Memorizza i marker
 		if(marker != 0)//se il marker è = 0 non lo memorizzo 
@@ -203,110 +203,110 @@ bool ImportCell1Ds(PolygonalMesh& mesh)
 // ***************************************************************************
 bool ImportCell2Ds(PolygonalMesh& mesh)
 {
-    ifstream file;
+    	ifstream file;
 	file.open("./Cell2Ds.csv");
 
-    if(file.fail())
-        return false;
+    	if(file.fail())
+        	return false;
 
-    list<string> listLines;
-    string line;
-    while (getline(file, line))
-        listLines.push_back(line);
+    	list<string> listLines;
+    	string line;
+    	while (getline(file, line))
+        	listLines.push_back(line);
 
-    file.close();
+    	file.close();
 
-    listLines.pop_front();//rimuovo header
+    	listLines.pop_front();//rimuovo header
 
-    mesh.NumCell2Ds = listLines.size();//numero di poligoni della mesh
+    	mesh.NumCell2Ds = listLines.size();//numero di poligoni della mesh
 
-    if (mesh.NumCell2Ds == 0)
-    {
-        cerr << "Non sono presenti Cell2D nel file" << endl;
-        return false;
-    }
+    	if (mesh.NumCell2Ds == 0)
+    	{
+        	cerr << "Non sono presenti Cell2D nel file" << endl;
+        	return false;
+    	}
 
-    mesh.Cell2DsId.reserve(mesh.NumCell2Ds);//vettore
-    mesh.Cell2DsVertices.reserve(mesh.NumCell2Ds);//vettore di vettori
-    mesh.Cell2DsEdges.reserve(mesh.NumCell2Ds);//vettore di vettori
+    	mesh.Cell2DsId.reserve(mesh.NumCell2Ds);//vettore
+    	mesh.Cell2DsVertices.reserve(mesh.NumCell2Ds);//vettore di vettori
+    	mesh.Cell2DsEdges.reserve(mesh.NumCell2Ds);//vettore di vettori
 
 	unsigned int k2 = 0;
-    for (const string& line : listLines)
-    {
-        istringstream converter(line);
+    	for (const string& line : listLines)
+    	{
+        	istringstream converter(line);
 
-        unsigned int id;
-		unsigned int marker;
-		char tmp;
-		unsigned int numVert;//numero di vertici del poligono corrente
-		unsigned int numEdg;//numero di lati del poligono corrente
-        vector<unsigned int> vertices;
-        vector<unsigned int> edges;
+        	unsigned int id;
+			unsigned int marker;
+			char tmp;
+			unsigned int numVert;//numero di vertici del poligono corrente
+			unsigned int numEdg;//numero di lati del poligono corrente
+			vector<unsigned int> vertices;
+			vector<unsigned int> edges;
 
-        converter >> id >> tmp >> marker >> tmp >> numVert;
-		vertices.reserve(numVert);
-		unsigned int vert;
-        for(unsigned int i = 0; i < numVert; i++){
-			converter >> tmp >> vert;
-			vertices.push_back(vert);
-		}
-		
-		converter >> tmp >> numEdg;
-		edges.reserve(numEdg);
-		unsigned int edg;
-		for(unsigned int i = 0; i < numEdg; i++){
-            converter >> tmp >> edg;
-			edges.push_back(edg);
-		}
-
-        mesh.Cell2DsId.push_back(id);
-        mesh.Cell2DsVertices.push_back(vertices);
-        mesh.Cell2DsEdges.push_back(edges);
-		
-		if(marker != 0)//se il marker è = 0 non lo memorizzo 
-		{
-			const auto it = mesh.Cell2DsMarker.find(marker);//cerca all'interno della mappa e restituisce l'iteratore dell'elemento che si vuole trovare, altrimenti se non lo trova, restituisce "end"
-			if(it!=mesh.Cell2DsMarker.end())
-			{
-				mesh.Cell2DsMarker[marker].push_back(id);//aggiorno il valore relativo alla chiave
-				//it -> second.push_back(id);
+			converter >> id >> tmp >> marker >> tmp >> numVert;
+			vertices.reserve(numVert);
+			unsigned int vert;
+        	for(unsigned int i = 0; i < numVert; i++){
+				converter >> tmp >> vert;
+				vertices.push_back(vert);
 			}
-			else 
-			{
-				mesh.Cell2DsMarker.insert({marker,{id}});//inserisce un nuovo marker se non ancora presente nella mappa
-			}
-		} 
 		
-		///Test area poligono non nulla (scompongo ogni poligono in triangoli e poi sommo le aree)
-		double area = 0.0;
-		for(unsigned int i = 0; i < numVert; i++){
+			converter >> tmp >> numEdg;
+			edges.reserve(numEdg);
+			unsigned int edg;
+			for(unsigned int i = 0; i < numEdg; i++){
+            	converter >> tmp >> edg;
+				edges.push_back(edg);
+			}
+
+			mesh.Cell2DsId.push_back(id);
+			mesh.Cell2DsVertices.push_back(vertices);
+			mesh.Cell2DsEdges.push_back(edges);
+		
+			if(marker != 0)//se il marker è = 0 non lo memorizzo 
+			{
+				const auto it = mesh.Cell2DsMarker.find(marker);//cerca all'interno della mappa e restituisce l'iteratore dell'elemento che si vuole trovare, altrimenti se non lo trova, restituisce "end"
+				if(it!=mesh.Cell2DsMarker.end())
+				{
+					mesh.Cell2DsMarker[marker].push_back(id);//aggiorno il valore relativo alla chiave
+					//it -> second.push_back(id);
+				}
+				else 
+				{
+					mesh.Cell2DsMarker.insert({marker,{id}});//inserisce un nuovo marker se non ancora presente nella mappa
+				}
+			} 
+		
+			///Test area poligono non nulla (scompongo ogni poligono in triangoli e poi sommo le aree)
+			double area = 0.0;
+			for(unsigned int i = 0; i < numVert; i++){
 						
-		unsigned int j = (i+1)%numVert; //con operatore modulo % chiudo il poligono
+				unsigned int j = (i+1)%numVert; //con operatore modulo % chiudo il poligono
 			
-			//ricavo le coordinate dei vertici (memorizzate in Cell0DsCoordinates)
-			const MatrixXd& coord = mesh.Cell0DsCoordinates;
-			double xi = coord(0, vertices[i]);
-			double yi = coord(1, vertices[i]);
-			double xj = coord(0, vertices[j]);
-			double yj = coord(1, vertices[j]);
+				//ricavo le coordinate dei vertici (memorizzate in Cell0DsCoordinates)
+				const MatrixXd& coord = mesh.Cell0DsCoordinates;
+				double xi = coord(0, vertices[i]);
+				double yi = coord(1, vertices[i]);
+				double xj = coord(0, vertices[j]);
+				double yj = coord(1, vertices[j]);
 			
-			area += (xi * yj) - (xj * yi);		
+				area += (xi * yj) - (xj * yi);		
 		
+			}
+			area = abs(area) * 0.5;
+			//cout << "area poligono " << id << " = " << area << endl;
+		
+			if (area < 1e-16)
+			{
+				cerr << "TEST FALLITO: Il poligono con id " << id << " ha area nulla!" << endl;
+				k2++;
+				return false;
+			}	
+			
 		}
-		area = abs(area) * 0.5;
-		//cout << "area poligono " << id << " = " << area << endl;
-		
-		if (area < 1e-16)
-		{
-			cerr << "TEST FALLITO: Il poligono con id " << id << " ha area nulla!" << endl;
-			k2++;
-			return false;
-		}	
-			
-    }
-	if(k2 == 0){
-		cout << "Tutti i poligoni della mesh area non nulla - TEST PASSATO!" << endl;
-	}
+		if(k2 == 0){
+			cout << "Tutti i poligoni della mesh area non nulla - TEST PASSATO!" << endl;
+		}
 	return true;
 }
 
