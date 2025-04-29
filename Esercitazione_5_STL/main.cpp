@@ -13,7 +13,7 @@ int main()
 
     if(!ImportMesh(mesh))
     {
-        cerr << "file not found" << endl;
+        cerr << "file non trovato" << endl;
         return 1;
     }
 Gedim::UCDUtilities utilities;

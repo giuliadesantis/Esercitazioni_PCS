@@ -38,10 +38,18 @@ void HeapSort(vector<T>& v)
 {
     const unsigned int n = v.size();
 
-    make_heap(v.begin(), v.end()); // trasforma v in un heap
+    make_heap(v.begin(), v.end());
+	 /* trasforma v in un heap, dove il primo elemento v[0] è il più grande,
+	 mentre gli altri elementi soddisfano la proprietà degli heap*/
 
     for (size_t i = 0; i < n; ++i) {
         pop_heap(v.begin(), v.end() - i); // dequeue
+		/*
+		sposto l'elemento massimo alla porzione v.end()-i-1, e riordino il resto del vettore affinché sia 
+		mantenuta la proprietà di heap... iterando così, alla fine del ciclo ottengo il vettore v ordinato in modo crescente
+		
+		Non rimuovo l'elemento, ma lo sposto nel posto "corretto" per l'ordinamento, restringendo il renge dell'heap a ogni iterazione
+		*/
     }
 }
 

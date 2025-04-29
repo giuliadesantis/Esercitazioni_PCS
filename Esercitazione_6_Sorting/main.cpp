@@ -33,12 +33,12 @@ int main(int argc, char *argv[])
     {
         istringstream convert(argv[1]);
         convert >> m;
-        cout << "use value: "  << m << endl;
+        cout << "lunghezza vettore: "  << m << endl;
     }
     else
-        cerr << "use default value: "  << m << endl;
+        cerr << "lunghezza default vettore: "  << m << endl;
 	
-	//voglio testare il codice con 4 vettori
+	//Testo il codice con 4 vettori diversi
 
     vector<int> v1(m);
     iota(v1.begin(), v1.end(), -4); // vettore in ordine crescente, l'ultimo argomento è il valore di partenza
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
               << chrono::duration_cast<chrono::milliseconds>(
                      today_time.time_since_epoch()).count() << endl;
 
-	unsigned int num_experiment = 100;
+	unsigned int num_experiment = 1000;
 
 	//Bubble Sort
 	

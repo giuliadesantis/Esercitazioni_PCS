@@ -17,7 +17,7 @@ bool ImportMesh(PolygonalMesh& mesh)
 			{
 				cout << "marker id:\t" << it -> first << "\t valori:";
 				for(const unsigned int id : it -> second)
-					cout << "\t" << id;
+					cout << id << "\t" ;
 
 				cout << endl;
 			}
@@ -37,7 +37,7 @@ bool ImportMesh(PolygonalMesh& mesh)
 			{
 				cout << "marker id:\t" << it -> first << "\t valori:";
 				for(const unsigned int id : it -> second)
-					cout << "\t" << id;
+					cout << id << "\t";
 
 				cout << endl;
 			}
@@ -57,7 +57,7 @@ bool ImportMesh(PolygonalMesh& mesh)
 			{
 				cout << "marker id:\t" << it -> first << "\t valori:";
 				for(const unsigned int id : it -> second)
-					cout << "\t" << id;
+					cout << id << "\t";
 
 				cout << endl;
 			}
@@ -167,19 +167,19 @@ bool ImportCell1Ds(PolygonalMesh& mesh)
 
         	unsigned int id;
         	unsigned int marker;
-		char tmp;
+			char tmp;
 
         	converter >>  id >> tmp >> marker >> tmp >> mesh.Cell1DsExtrema(0, id) >> tmp >> mesh.Cell1DsExtrema(1, id);
         	mesh.Cell1DsId.push_back(id);
 	
-		/// Memorizza i marker
+		// Memorizza i marker
 		if(marker != 0)//se il marker è = 0 non lo memorizzo 
 		{
 			const auto it = mesh.Cell1DsMarker.find(marker);//cerca all'interno della mappa e restituisce l'iteratore dell'elemento che si vuole trovare, altrimenti se non lo trova, restituisce "end"
 			if(it!=mesh.Cell1DsMarker.end())
 			{
-				//mesh.Cell1DsMarker[marker].push_back(id);//aggiorno il valore relativo alla chiave
-				it -> second.push_back(id);
+				mesh.Cell1DsMarker[marker].push_back(id);
+				//it -> second.push_back(id);
 			}
 			else 
 			{
@@ -187,11 +187,13 @@ bool ImportCell1Ds(PolygonalMesh& mesh)
 			}
 		}
 		
-		///Test lunghezza lati non nulla 
+		//Test lunghezza lati non nulla 
 		if(mesh.Cell1DsExtrema(0, id) == mesh.Cell1DsExtrema(1, id)){
 			cout << "TEST FALLITO: il lato " << id << "ha lunghezza nulla!" << endl;
 			k1++;
-		}		
+			//itero su tutti i lati, e se ne trovo che hanno lunghezza nulla, aumento il contatore di 1
+		}	
+	
     }
 	
 	if(k1 == 0){
@@ -226,9 +228,9 @@ bool ImportCell2Ds(PolygonalMesh& mesh)
         	return false;
     	}
 
-    	mesh.Cell2DsId.reserve(mesh.NumCell2Ds);//vettore
-    	mesh.Cell2DsVertices.reserve(mesh.NumCell2Ds);//vettore di vettori
-    	mesh.Cell2DsEdges.reserve(mesh.NumCell2Ds);//vettore di vettori
+    	mesh.Cell2DsId.reserve(mesh.NumCell2Ds);
+    	mesh.Cell2DsVertices.reserve(mesh.NumCell2Ds);
+    	mesh.Cell2DsEdges.reserve(mesh.NumCell2Ds);
 
 	unsigned int k2 = 0;
     	for (const string& line : listLines)
@@ -268,7 +270,7 @@ bool ImportCell2Ds(PolygonalMesh& mesh)
 				const auto it = mesh.Cell2DsMarker.find(marker);//cerca all'interno della mappa e restituisce l'iteratore dell'elemento che si vuole trovare, altrimenti se non lo trova, restituisce "end"
 				if(it!=mesh.Cell2DsMarker.end())
 				{
-					mesh.Cell2DsMarker[marker].push_back(id);//aggiorno il valore relativo alla chiave
+					mesh.Cell2DsMarker[marker].push_back(id);
 					//it -> second.push_back(id);
 				}
 				else 
@@ -278,7 +280,9 @@ bool ImportCell2Ds(PolygonalMesh& mesh)
 			} 
 		
 			///Test area poligono non nulla (scompongo ogni poligono in triangoli e poi sommo le aree)
+			
 			double area = 0.0;
+			
 			for(unsigned int i = 0; i < numVert; i++){
 						
 				unsigned int j = (i+1)%numVert; //con operatore modulo % chiudo il poligono
