@@ -7,13 +7,20 @@
 using namespace std;
 
 namespace SortLibrary {
-
+	
 template<typename T>
+concept Sortable = requires(T& t) {
+    {t < t} -> std::convertible_to<bool>;
+};
+
+//Bubble Sort
+
+template<Sortable T>
 void BubbleSort(vector<T>& v) 
 {
 	const unsigned int n = v.size();
-	for (size_t i = 0; i <= n - 2; i++) {
-		for (size_t j = i+1; j <= n - 1; j++) {
+	for (size_t i = 0; i < n - 1; i++) {
+		for (size_t j = i+1; j < n; j++) {
 			if (v[j] < v[i]) {	
 				//swap:
 				const T tmp = v[i];
@@ -24,15 +31,17 @@ void BubbleSort(vector<T>& v)
 	}
 }
 
-template<typename T>
+//Heap Sort (implementato con funzioni relative agli heap, da documentazione online)
+
+template<Sortable T>
 void HeapSort(vector<T>& v) 
 {
     const unsigned int n = v.size();
 
     make_heap(v.begin(), v.end()); // trasforma v in un heap
 
-    for (size_t j = 0; j < n; ++j) {
-        pop_heap(v.begin(), v.end() - j); // dequeue
+    for (size_t i = 0; i < n; ++i) {
+        pop_heap(v.begin(), v.end() - i); // dequeue
     }
 }
 
